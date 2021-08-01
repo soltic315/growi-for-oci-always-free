@@ -1,0 +1,12 @@
+{
+    "name": "devenv",
+    "image": "hashicorp/terraform:1.0.0",
+    "mounts": [
+        "source=${env:HOME}${env:USERPROFILE}/.aws,target=/root/.aws,type=bind"
+    ],
+    "workspaceMount": "source=${localWorkspaceFolder}/,target=/workspace,type=bind,consistency=delegated",
+    "workspaceFolder": "/workspace",
+    "extensions": [
+        "hashicorp.terraform"
+    ]
+}
