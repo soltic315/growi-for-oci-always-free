@@ -1,0 +1,6 @@
+- name: Apply common configuration to all nodes
+  hosts: all
+  remote_user: opc
+  become: yes
+  roles:
+    - common

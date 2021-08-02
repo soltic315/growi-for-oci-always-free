@@ -2,6 +2,10 @@ output "web_public_ip" {
   value = oci_core_instance.web.public_ip
 }
 
+output "elasticsearch_public_ip" {
+  value = oci_core_instance.elasticsearch.public_ip
+}
+
 output "elasticsearch_private_ip" {
   value = oci_core_instance.elasticsearch.private_ip
 }

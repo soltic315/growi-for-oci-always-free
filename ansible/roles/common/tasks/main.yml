@@ -1,0 +1,47 @@
+- name: Disable SELinux
+  selinux:
+    state: disabled
+
+- name: Make sure firewalld service unit is running and enabled
+  systemd:
+    name: firewalld
+    state: stopped
+    enabled: no
+
+- name: Install the latest version of git
+  yum:
+    name: git
+    state: latest
+
+- name: Setup docker-ce.repo
+  get_url:
+    url: https://download.docker.com/linux/centos/docker-ce.repo
+    dest: /etc/yum.repos.d/docker-ce.repo
+    mode: '0644'
+
+- name: Install the latest version of docker-ce
+  yum:
+    name: docker-ce
+    state: latest
+
+- name: Install the latest version of docker-ce-cli
+  yum:
+    name: docker-ce-cli
+    state: latest
+
+- name: Install the latest version of containerd.io
+  yum:
+    name: containerd.io
+    state: latest
+
+- name: Make sure docker service unit is running and enabled
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+
+- name: Install docker-compose
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-{{ ansible_system }}-{{ ansible_architecture }}"
+    dest: /usr/local/bin/docker-compose
+    mode: +x
